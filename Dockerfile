@@ -3,7 +3,7 @@ MAINTAINER Matt Koski <maccam912@gmail.com>
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install mumble-server mumble-django -y
-RUN /etc/init.d/mumble-server restart
+#RUN dpkg-reconfigure mumble-server
 
 EXPOSE 64738:64738
 EXPOSE 80:80
