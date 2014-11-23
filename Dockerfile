@@ -1,8 +1,10 @@
 FROM ubuntu
 MAINTAINER Matt Koski <maccam912@gmail.com>
 
+RUN add-apt-repository ppa:mumble/release
+
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install mumble-server mumble-django -y
+RUN apt-get install mumble mumble-django -y
 #RUN dpkg-reconfigure mumble-server
 
 EXPOSE 64738:64738
