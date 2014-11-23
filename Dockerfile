@@ -1,16 +1,32 @@
 FROM ubuntu
 MAINTAINER Matt Koski <maccam912@gmail.com>
+
+# Upgrade the build and include the universe repo.
+RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install tar wget build-essential -y
-RUN adduser admin
-RUN cd / && mkdir murmur
-RUN cd /tmp && wget http://mumble.info/snapshot/murmur-static_x86-1.2.3-380-g3bcc83e.tar.bz2
-RUN cd /tmp && tar xvfj murmur* -C /murmur
-RUN su - admin
-RUN cd /murmur/murmur* && ./murmur.x86 -supw secret && ./murmur.x86
-ADD start_murmur.sh /murmur/start_murmur.sh
-#RUN cd /murmur && sh start_murmur.sh start
-EXPOSE 64738:64738
-EXPOSE 80:80
-EXPOSE 22:22
-EXPOSE 443:443
+RUN apt-get upgrade -y
+
+# Install the mumble dependencies
+RUN apt-get install -y libterm-readline-perl-perl
+RUN apt-get install -y openssh-server mumble-server sudo
+RUN mkdir -p /var/run/sshd
+
+# Install supervisor
+RUN apt-get install -y supervisor
+RUN mkdir -p /var/log/supervisor
+RUN locale-gen en_US en_US.UTF-8
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+RUN useradd -m -p admin -r -s /bin/bash -g root admin
+RUN echo "admin:admin" | chpasswd 
+RUN sudo adduser admin sudo
+
+# Make the ports available for SSH and Mumble.
+EXPOSE 22
+EXPOSE 64738
+
+# Server startup command
+CMD ["/usr/bin/supervisord"]
+
+# Set the initial superuser password to admin
+RUN /usr/sbin/murmurd -fg -ini /etc/mumble-server.ini -supw admin
