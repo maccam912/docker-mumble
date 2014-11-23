@@ -5,6 +5,7 @@ RUN apt-get install software-properties-common python-software-properties -y
 RUN add-apt-repository ppa:mumble/release
 RUN apt-get update
 RUN apt-get install mumble mumble-django -y
+RUN mumble-django-configure
 #RUN dpkg-reconfigure mumble-server
 
 EXPOSE 64738:64738
