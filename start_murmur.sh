@@ -9,8 +9,8 @@
 ### END INIT INFO
 #! /bin/sh
 # /etc/init.d/murmur
-MURMURBIN=/etc/murmur/murmur.x86
-MURMURINI=/etc/murmur/murmur.ini
+MURMURBIN=/murmur/murmur*/murmur.x86
+MURMURINI=/murmur/murmur*/murmur.ini
 case "$1" in
 start)
 if [ -x $MURMURBIN ] ; then
@@ -19,14 +19,12 @@ $MURMURBIN -ini $MURMURINI
 else
 echo "$MURMURBIN not installed"
 fi
-;;
-stop)
+
 echo "Stopping script murmur"
-pkill murmur.x86 2&gt;/dev/null
-;;
-restart)
+pkill murmur.x86 2 > /dev/null
+
 echo "Restarting script murmur"
-pkill murmur.x86 2&gt;/dev/null
+pkill murmur.x86 2 > /dev/null
 sleep 1
 if [ -x $MURMURBIN ] ; then
 echo "Loading murmur..."
@@ -34,19 +32,17 @@ $MURMURBIN -ini $MURMURINI
 else
 echo "$MURMURBIN not installed"
 fi
-;;
-status)
-MURMURPID=`pidof $MURMURBIN <--Please note that there should be another backtick after the N
+
+MURMURPID=`pidof $MURMURBIN`
 if (( $? ))
 then
 echo "murmur is NOT running"
 else
 echo "murmur IS running, pid=$MURMURPID"
 fi
-;;
-*)
+
 echo "Usage: $0 {start|stop|restart|status}"
 exit 1
-;;
+
 esac
 exit 0
