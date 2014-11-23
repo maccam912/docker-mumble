@@ -1,7 +1,7 @@
 FROM ubuntu
 MAINTAINER Matt Koski <maccam912@gmail.com>
 RUN apt-get update
-RUN apt-get install tar wget build-essentials -y
+RUN apt-get install tar wget build-essential -y
 RUN adduser admin
 RUN cd / && mkdir murmur
 RUN cd /tmp && wget http://mumble.info/snapshot/murmur-static_x86-1.2.3-380-g3bcc83e.tar.bz2
