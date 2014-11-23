@@ -2,6 +2,7 @@ FROM ubuntu
 MAINTAINER Matt Koski <maccam912@gmail.com>
 
 RUN apt-get install software-properties-common python-software-properties -y
+RUN apt-get update
 RUN add-apt-repository ppa:mumble/release
 
 RUN apt-get update && apt-get upgrade -y
