@@ -1,6 +1,6 @@
 FROM centos
 MAINTAINER Matt Koski <maccam912@gmail.com>
-RUN yum -y install bzip2 tar wget openssl-devel libsndfile-devel alsa-lib-devel protobuf-compiler protobuf-devel boost-devel avahi-compat-libdns_sd-devel speech-dispatcher-devel libdaemon-devel libusb-devel ice-3.4 ice-devel libcap-devel php-devel gcc make pcre-devel perl-ExtUtils-MakeMaker
+RUN yum -y install passwd bzip2 tar wget openssl-devel libsndfile-devel alsa-lib-devel protobuf-compiler protobuf-devel boost-devel avahi-compat-libdns_sd-devel speech-dispatcher-devel libdaemon-devel libusb-devel ice-3.4 ice-devel libcap-devel php-devel gcc make pcre-devel perl-ExtUtils-MakeMaker
 RUN adduser admin
 RUN echo "admin:admin" | passwd admin
 RUN cd / && mkdir murmur
