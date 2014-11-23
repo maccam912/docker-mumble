@@ -9,7 +9,7 @@ RUN cd /tmp && tar xvfj murmur* -C /murmur
 RUN su - admin
 RUN cd /murmur/murmur* && ./murmur.x86 -supw secret && ./murmur.x86
 ADD start_murmur.sh /murmur/start_murmur.sh
-RUN cd /murmur && sh start_murmur.sh start
+#RUN cd /murmur && sh start_murmur.sh start
 EXPOSE 64738:64738
 EXPOSE 80:80
 EXPOSE 22:22
