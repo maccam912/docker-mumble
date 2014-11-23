@@ -1,6 +1,6 @@
 FROM ubuntu
 MAINTAINER Matt Koski <maccam912@gmail.com>
-RUN apt-get install -y install passwd bzip2 tar wget openssl-devel libsndfile-devel alsa-lib-devel protobuf-compiler protobuf-devel boost-devel avahi-compat-libdns_sd-devel speech-dispatcher-devel libdaemon-devel libusb-devel ice-3.4 ice-devel libcap-devel php-devel gcc make pcre-devel perl-ExtUtils-MakeMaker
+RUN apt-get install tar wget build-essential -y
 RUN adduser admin
 RUN cd / && mkdir murmur
 RUN cd /tmp && wget http://mumble.info/snapshot/murmur-static_x86-1.2.3-380-g3bcc83e.tar.bz2
