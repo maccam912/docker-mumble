@@ -8,7 +8,7 @@ RUN cd /tmp && wget http://mumble.info/snapshot/murmur-static_x86-1.2.3-380-g3bc
 RUN cd /tmp && tar xvfj murmur* -C /murmur
 RUN su - admin
 RUN cd /murmur/murmur* && ./murmur.x86 -supw secret && ./murmur.x86
-ADD murmur_start.sh
+ADD start_murmur.sh
 EXPOSE 64738:64738
 EXPOSE 80:80
 EXPOSE 22:22
